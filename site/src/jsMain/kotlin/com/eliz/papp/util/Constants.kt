@@ -15,7 +15,7 @@ object Constants
     const val SECTION_WIDTH = 1920
     const val FONT_FAMILY = "Roboto"
     const val MAIN_TEXT =
-        "I am a graduate software engineer, who would like to learn and gain\n" + "experience from her future colleagues! Team player but able to work\n" + "alone. Eager to learn about new technologies! My main interests are in\n" + "frontend, web and mobile application development.\n"
+        "I am a quick-learning software engineer, who would like to learn and gain experience from her future colleagues! Team player but able to work\n" + "alone. Eager to learn about new technologies! My main interests are in\n" + "frontend, web and mobile application development.\n"
     const val ABOUT_HOBBY1 = "Taking care of my houseplants"
     const val ABOUT_HOBBY2 = "Gardening"
     const val ABOUT_HOBBY3 = "Drawing/painting"
