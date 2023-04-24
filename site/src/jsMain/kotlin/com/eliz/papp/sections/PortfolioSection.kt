@@ -98,8 +98,8 @@ fun PortfolioNavigation()
         FaArrowLeft(
             modifier = PortfolioArrowIconStyle
                     .toModifier()
-                    .margin(40.px)
                     .cursor(Cursor.Pointer)
+                    .padding(right = 10.px)
                     .onClick {
                         document
                                 .getElementById("scrollableContainer")
@@ -113,7 +113,6 @@ fun PortfolioNavigation()
         FaArrowRight(
             modifier = PortfolioArrowIconStyle
                     .toModifier()
-                    .margin(40.px)
                     .cursor(Cursor.Pointer)
                     .onClick {
                         document

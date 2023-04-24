@@ -49,6 +49,8 @@ object Res
     object Image
     {
         const val background = "background.svg"
+        const val background_sm = "background_sm.svg"
+        const val background_zero = "background_zero.svg"
         const val logo = "EP_logo.svg"
         const val main_image = "main_image_circle.png"
         const val portfolio1 = "portfolio1.png"

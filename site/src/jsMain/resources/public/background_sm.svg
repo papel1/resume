@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 620 813" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <rect width="620" height="813" style="fill: rgb(240, 240, 240); stroke: rgb(240, 240, 240);"/>
+  <path style="fill: rgb(0, 90, 100); stroke: rgb(0, 90, 100);" d="M 150 433 H 470 A 150 150 0 0 1 620 583 V 813 H 0 V 583 A 150 150 0 0 1 150 433 Z" bx:shape="rect 0 433 620 380 150 150 0 0 1@2860a5da"/>
+</svg>

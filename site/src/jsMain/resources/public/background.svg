@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 1920 901" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
-    <rect width="1921" height="901" style="stroke: rgb(249, 249, 249); fill: rgb(240, 240, 240);"/>
+    <rect width="1921" height="901" style="stroke: rgb(240, 240, 240); fill: rgb(240, 240, 240);"/>
     <path style="stroke: rgb(0, 90, 100); fill-rule: nonzero; fill: rgb(0, 90, 100);"
           d="M 1120 0 H 1920 V 901 H 1120 A 200 200 0 0 1 920 701 V 200 A 200 200 0 0 1 1120 0 Z"
           bx:shape="rect 920 0 1000 901 200 0 0 200 1@22e41e73"/>

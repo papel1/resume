@@ -31,6 +31,7 @@ import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import org.jetbrains.compose.web.css.deg
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.*
@@ -38,27 +39,46 @@ import org.jetbrains.compose.web.dom.*
 @Composable
 fun MainSection(onMenuClicked: () -> Unit)
 {
+    val breakpoint by rememberBreakpoint()
     Box(
         modifier = Modifier
                 .id(Section.Home.id)
                 .maxWidth(SECTION_WIDTH.px),
         contentAlignment = Alignment.TopCenter
     ) {
-        MainBackground()
+        MainBackground(breakpoint = breakpoint)
         MainContent(onMenuClicked = onMenuClicked)
     }
 }
 
 @Composable
-fun MainBackground()
+fun MainBackground(breakpoint: Breakpoint)
 {
-    Image(
-        modifier = Modifier
-                .fillMaxSize()
-                .objectFit(ObjectFit.Cover),
-        src = Res.Image.background,
-        desc = "Background Image"
-    )
+    if (breakpoint <= Breakpoint.ZERO){
+        Image(
+            modifier = Modifier
+                    .fillMaxSize()
+                    .objectFit(ObjectFit.Cover),
+            src = Res.Image.background_zero,
+            desc = "Background Image ZERO"
+        )
+    } else if (breakpoint <= Breakpoint.SM) {
+        Image(
+            modifier = Modifier
+                    .fillMaxSize()
+                    .objectFit(ObjectFit.Cover),
+            src = Res.Image.background_sm,
+            desc = "Background Image SM"
+        )
+    }else {
+        Image(
+            modifier = Modifier
+                    .fillMaxSize()
+                    .objectFit(ObjectFit.Cover),
+            src = Res.Image.background,
+            desc = "Background Image"
+        )
+    }
 }
 
 @Composable
@@ -84,7 +104,7 @@ fun MainContent(onMenuClicked: () -> Unit)
                 )
             ) {
                 MainText(breakpoint = breakpoint)
-                MainImage(breakpoint = breakpoint)
+                MainImage()
             }
         }
     }
@@ -139,7 +159,7 @@ fun MainText(breakpoint: Breakpoint)
                         .color(Theme.Secondary.rgb)
                         .toAttrs()
             ) {
-                Text("Junior Software Developer") //TODO
+                Text("Junior Software Developer")
             }
             P(
                 attrs = Modifier
@@ -155,7 +175,7 @@ fun MainText(breakpoint: Breakpoint)
                         .toAttrs()
             ) {
                 Text(
-                    MAIN_TEXT //TODO
+                    MAIN_TEXT
                 )
             }
             Button(
@@ -182,22 +202,25 @@ fun MainText(breakpoint: Breakpoint)
 }
 
 @Composable
-fun MainImage(breakpoint: Breakpoint)
+fun MainImage()
 {
-    Column(
-        modifier = Modifier
-                .fillMaxSize(if (breakpoint <= Breakpoint.SM) 50.percent else 80.percent)
-                .fillMaxHeight(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            modifier = MainImageStyle
-                    .toModifier()
-                    .fillMaxWidth(),
-            src = Res.Image.main_image,
-            desc = "Main Image"
-        )
+        Column(
+            modifier = Modifier
+                    .fillMaxSize(80.percent)
+                    .fillMaxHeight()
+        ) {
+            Image(
+                modifier = MainImageStyle
+                        .toModifier()
+                        .fillMaxWidth(),
+                src = Res.Image.main_image,
+                desc = "Main Image"
+            )
+        }
     }
-
 }
 

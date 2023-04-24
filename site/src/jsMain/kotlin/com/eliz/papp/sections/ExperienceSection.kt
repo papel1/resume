@@ -58,7 +58,7 @@ fun ExperienceContent()
                     )
                     .margin(bottom = 25.px),
             section = Section.Experience,
-            alignment = Alignment.End
+            alignment = Alignment.Start
         )
         Experience
                 .values()
