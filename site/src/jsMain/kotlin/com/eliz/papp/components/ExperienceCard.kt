@@ -20,7 +20,9 @@ import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.dom.Br
 import org.jetbrains.compose.web.dom.P
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
@@ -69,21 +71,26 @@ fun ExperienceDescription(
                 .padding(all = 14.px)
                 .backgroundColor(if (active) Theme.Primary.rgb else Theme.LighterGray.rgb)
     ) {
-        P(
-            attrs = Modifier
-                    .margin(
-                        topBottom = 0.px
-                    )
-                    .fontFamily(FONT_FAMILY)
-                    .fontSize(18.px)
-                    .lineHeight(1.6)
-                    .color(if (active) Colors.White else Theme.Secondary.rgb)
-                    .fontWeight(FontWeight.Normal)
-                    .toAttrs()
-        ) {
-            Text(
-                description
-            )
+        Column {
+            val indentPx = 16
+            description.split("\n").forEach { line ->
+                P(
+                    attrs = Modifier
+                            .margin(topBottom = 0.px)
+                            .fontFamily(FONT_FAMILY)
+                            .fontSize(18.px)
+                            .lineHeight(1.6)
+                            .color(if (active) Colors.White else Theme.Secondary.rgb)
+                            .fontWeight(FontWeight.Normal)
+                            .toAttrs {
+                                style {
+                                    property("text-indent", "${indentPx}px")
+                                }
+                            }
+                ) {
+                    Text(line.trim())
+                }
+            }
         }
     }
 }

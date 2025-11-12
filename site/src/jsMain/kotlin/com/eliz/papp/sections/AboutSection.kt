@@ -73,7 +73,7 @@ fun AboutHobby()
     Column(
         modifier = Modifier
                 .fillMaxWidth()
-                .padding(right = 50.px),
+                .padding(right = 100.px),
         verticalArrangement = Arrangement.Top
     ) {
         SectionTitle(section = Section.About)

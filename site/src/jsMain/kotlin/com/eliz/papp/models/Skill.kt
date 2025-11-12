@@ -11,7 +11,7 @@ enum class Skill(
 {
     English(
         title = "English",
-        percentage = 75.percent
+        percentage = 85.percent
     ),
     Hungarian(
         title = "Hungarian",
@@ -19,7 +19,7 @@ enum class Skill(
     ),
     Spanish(
         title = "Spanish",
-        percentage = 20.percent
+        percentage = 25.percent
     ) //TODO?
     
     /*Creative(
