@@ -75,6 +75,12 @@ jobs:
           rm -rf .kobweb/site
           ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
 
+      - name: Fix script paths for basePath
+        run: |
+          cd site/.kobweb/site
+          find . -name "*.html" -type f -exec sed -i 's|src="/papp\.js"|src="/resume/papp.js"|g' {} +
+          find . -name "*.html" -type f -exec sed -i 's|href="/|href="/resume/|g' {} +
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
