@@ -73,13 +73,18 @@ jobs:
         run: |
           cd site
           rm -rf .kobweb/site
-          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
+          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty
 
-      - name: Fix script paths for basePath
+      - name: Fix paths for basePath
         run: |
           cd site/.kobweb/site
-          find . -name "*.html" -type f -exec sed -i 's|src="/papp\.js"|src="/resume/papp.js"|g' {} +
-          find . -name "*.html" -type f -exec sed -i 's|href="/|href="/resume/|g' {} +
+          # Fix script and stylesheet paths
+          find . -name "*.html" -type f -exec sed -i 's|src="/\([^"]*\)\.js"|src="/resume/\1.js"|g' {} +
+          find . -name "*.html" -type f -exec sed -i 's|href="/\([^"]*\)\.css"|href="/resume/\1.css"|g' {} +
+          # Fix other resource paths (images, fonts, etc.) but preserve external URLs and fragments
+          find . -name "*.html" -type f -exec sed -i 's|href="/#|href="/resume/#|g' {} +
+          find . -name "*.html" -type f -exec sed -i 's|href="/\([^h:][^"]*\)"|href="/resume/\1"|g' {} +
+          find . -name "*.html" -type f -exec sed -i 's|src="/\([^"]*\)"|src="/resume/\1"|g' {} +
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
