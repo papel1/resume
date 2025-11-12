@@ -36,6 +36,15 @@ fun ObserveViewportEntered(
             )
         } else
         {
+            // Check immediately on mount
+            val top = document
+                    .getElementById(sectionId)
+                    ?.getBoundingClientRect()?.top
+            if (top != null && top < distanceFromTop)
+            {
+                viewportEntered = true
+            }
+            
             window.addEventListener(
                 type = "scroll",
                 callback = listener
