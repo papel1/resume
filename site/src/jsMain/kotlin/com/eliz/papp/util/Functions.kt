@@ -14,49 +14,48 @@ fun ObserveViewportEntered(
 )
 {
     var viewportEntered by remember { mutableStateOf(false) }
-    val listener = remember {
-        EventListener {
-            val top = document
-                    .getElementById(sectionId)
-                    ?.getBoundingClientRect()?.top
-            if (top != null && top < distanceFromTop)
-            {
-                viewportEntered = true
-            }
-        }
-    }
 
-    LaunchedEffect(sectionId) {
-        window.addEventListener(
-            type = "scroll",
-            callback = listener
-        )
-        
-        // Check immediately on mount with a small delay to ensure DOM is ready
-        delay(100)
+    // Shared check used by both initial and event-driven paths
+    fun updateFromCurrent() {
         val top = document
                 .getElementById(sectionId)
                 ?.getBoundingClientRect()?.top
-        if (top != null && top < distanceFromTop)
-        {
+        if (top != null && top < distanceFromTop) {
             viewportEntered = true
         }
     }
-    
+
+    // Create a single listener instance we can add/remove
+    val listener = remember {
+        EventListener { updateFromCurrent() }
+    }
+
+    // Attach listeners and perform initial checks
+    LaunchedEffect(sectionId) {
+        window.addEventListener(type = "scroll", callback = listener)
+        window.addEventListener(type = "resize", callback = listener)
+
+        // Immediate check in case the section is already in view
+        updateFromCurrent()
+        // Fallback check shortly after mount to ensure DOM is ready
+        delay(150)
+        updateFromCurrent()
+    }
+
+    // Invoke callback and detach listeners once entered
     LaunchedEffect(viewportEntered) {
-        if (viewportEntered)
-        {
+        if (viewportEntered) {
             onViewportEntered()
-            window.removeEventListener(
-                type = "scroll",
-                callback = listener
-            )
-        } else
-        {
-            window.addEventListener(
-                type = "scroll",
-                callback = listener
-            )
+            window.removeEventListener(type = "scroll", callback = listener)
+            window.removeEventListener(type = "resize", callback = listener)
+        }
+    }
+
+    // Ensure cleanup if this composable leaves composition
+    DisposableEffect(sectionId) {
+        onDispose {
+            window.removeEventListener(type = "scroll", callback = listener)
+            window.removeEventListener(type = "resize", callback = listener)
         }
     }
 }
