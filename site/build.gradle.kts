@@ -4,7 +4,6 @@ import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.kobweb.application)
 //    alias(libs.plugins.kobwebx.markdown)
 }
