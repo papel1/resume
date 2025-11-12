@@ -1,6 +1,6 @@
 site:
   title: "Eliz Papp Portfolio"
-  basePath: "/resume"
+  basePath: resume
 
 server:
   files:
