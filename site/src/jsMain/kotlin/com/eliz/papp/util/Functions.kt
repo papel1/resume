@@ -51,6 +51,12 @@ fun ObserveViewportEntered(
                 type = "scroll",
                 callback = listener
             )
+        } else
+        {
+            window.addEventListener(
+                type = "scroll",
+                callback = listener
+            )
         }
     }
 }
