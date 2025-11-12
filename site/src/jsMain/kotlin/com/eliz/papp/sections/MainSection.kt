@@ -159,7 +159,7 @@ fun MainText(breakpoint: Breakpoint)
                         .color(Theme.Secondary.rgb)
                         .toAttrs()
             ) {
-                Text("Junior Software Developer")
+                Text("Software Developer")
             }
             P(
                 attrs = Modifier

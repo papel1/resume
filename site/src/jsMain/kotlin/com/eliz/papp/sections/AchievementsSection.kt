@@ -40,7 +40,7 @@ fun AchievementsContent(breakpoint: Breakpoint)
         numColumns = numColumns(
             base = 1,
             md = 2,
-            lg = 4
+            lg = 3
         ),
         modifier = Modifier.margin(left = if (breakpoint > Breakpoint.SM) 50.px else 0.px)
     ) {
@@ -53,9 +53,9 @@ fun AchievementsContent(breakpoint: Breakpoint)
                             right = if (achievement == Achievement.Driving) 0.px
                             else
                             {
-                                if (breakpoint > Breakpoint.SM) 40.px else 0.px
+                                if (breakpoint > Breakpoint.SM) 35.px else 0.px
                             },
-                            bottom = if (breakpoint > Breakpoint.MD) 0.px else 40.px
+                            bottom = if (achievement == Achievement.Diploma || achievement == Achievement.HDiploma ) 40.px else 0.px,
                         ),
                         achievement = achievement
                     )

@@ -52,7 +52,7 @@ fun ServiceContent()
             numColumns = numColumns(
                 base = 1,
                 sm = 2,
-                md = 3
+                md = 4
             )
         ) {
             Service
