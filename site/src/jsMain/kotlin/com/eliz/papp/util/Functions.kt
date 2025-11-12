@@ -26,17 +26,28 @@ fun ObserveViewportEntered(
         }
     }
 
+    LaunchedEffect(sectionId) {
+        window.addEventListener(
+            type = "scroll",
+            callback = listener
+        )
+        
+        // Check immediately on mount with a small delay to ensure DOM is ready
+        delay(100)
+        val top = document
+                .getElementById(sectionId)
+                ?.getBoundingClientRect()?.top
+        if (top != null && top < distanceFromTop)
+        {
+            viewportEntered = true
+        }
+    }
+    
     LaunchedEffect(viewportEntered) {
         if (viewportEntered)
         {
             onViewportEntered()
             window.removeEventListener(
-                type = "scroll",
-                callback = listener
-            )
-        } else
-        {
-            window.addEventListener(
                 type = "scroll",
                 callback = listener
             )
