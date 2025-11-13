@@ -84,11 +84,10 @@ jobs:
       - name: Fix paths for basePath
         run: |
           cd site/.kobweb/site
-          # Fix all paths by adding /resume/ prefix
-          find . -name "*.html" -type f -exec sed -i 's|src="/papp\.js"|src="/resume/papp.js"|g' {} +
+          # Fix all paths by adding /resume/ prefix (only if not already present)
+          find . -name "*.html" -type f -exec sed -i 's|src="/\([^r][^"]*\)"|src="/resume/\1"|g' {} +
+          find . -name "*.html" -type f -exec sed -i 's|href="/\([^r][^"]*\)"|href="/resume/\1"|g' {} +
           find . -name "*.html" -type f -exec sed -i 's|href="/#|href="/resume/#|g' {} +
-          find . -name "*.html" -type f -exec sed -i 's|src="/\([^"]*\)"|src="/resume/\1"|g' {} +
-          find . -name "*.html" -type f -exec sed -i 's|href="/\([^h"]*\)"|href="/resume/\1"|g' {} +
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
